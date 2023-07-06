@@ -1,6 +1,6 @@
 {
-  "name": "mahjong-record-frontend",
-  "homepage": "https://a88688547.github.io/FE_MahjongRecord",
+  "name": "fe-mahjong-record",
+  "homepage": "https://a88688547.github.io/fe-mahjong-record",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
