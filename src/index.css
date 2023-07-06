@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --doc-height: 100%;
+}
+
+html,
+body {
+  height: 100vh; /* fallback for Js load */
+  height: var(--doc-height);
+}
+
+.vh100 {
+  height: var(--doc-height);
+}
+
+.contentHeight {
+  height: calc(var(--doc-height) - 100px);
+
+}

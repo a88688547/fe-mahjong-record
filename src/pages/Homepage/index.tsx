@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import clsx from "clsx";
 import "../../style/animation.css";
+// import { Input } from "../../component";
+import { Input } from "../../component/new_input";
+
 
 enum Position {
   TOP = "top",
@@ -38,9 +41,7 @@ export const HomePage = (): JSX.Element => {
     Position.LEFT,
   ];
 
-  const [currentUserName, setCurrentUserName] = useState<any>({
-    name: ""
-  });
+  const [currentUserName, setCurrentUserName] = useState<any>('');
 
   const [currentPosition, setCurrentPosition] = useState<PositionType>();
   type userName = { [key: string]: string };
@@ -75,16 +76,15 @@ export const HomePage = (): JSX.Element => {
   });
 
   const userArray = useMemo(() => {
-    let array: any[] = [];
-    for (const [key, value] of Object.entries(userState)) {
-      if (key === "name") {
-        array.push(value);
-      }
-    }
-    return array;
-
+    const array  = Object.keys(userState).map((key) =>  
+    {  
+      return userState[key].name;  
+    });  
     console.log("array:", array);
+    return array
   }, [userState]);
+
+  const isReady = !userArray.find((name) => name === "")
 
   const onClickUserBox = (position: PositionType) => {
     if (currentPosition === position) {
@@ -96,13 +96,16 @@ export const HomePage = (): JSX.Element => {
         console.log(document.querySelector(`#${position}_input`));
       }, 100);
       setCurrentPosition(position);
+
+      setCurrentUserName(userState[position].name)
     }
   };
 
   type UserBoxProps = {
     position: PositionType;
   };
-  const UserBox = ({ position }: UserBoxProps): JSX.Element => {
+  // const UserBox = ({ position }: UserBoxProps): JSX.Element => {
+    const UserBox = (position:PositionType ): JSX.Element => {
     let positionStyle = ''
 
     switch (position) {
@@ -148,7 +151,7 @@ export const HomePage = (): JSX.Element => {
       >
         {currentPosition === position ? (
           <div
-            className="p-4 flex flex-col items-center"
+            className="p-4 flex flex-col items-center justify-between h-full"
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -156,11 +159,11 @@ export const HomePage = (): JSX.Element => {
             <div className=" text-3xl text-center">請輸入玩家名稱</div>
             <div className="border-2 border-[gray] border-solid text-xl">
 
-                <input
+                <Input.Text
                     className="h-[50px]"
                     id={`${position}_input`}
                     type="text"
-                    value={currentUserName?.name}
+                    value={currentUserName}
                     placeholder="玩家名稱"
                     onChange={(e) => {
                         onCurrentUserNameChange(e.target.value);
@@ -169,7 +172,7 @@ export const HomePage = (): JSX.Element => {
             </div>
             <div
               className={clsx(
-                "text-gray-500",
+                "text-gray-500 text-3xl",
                 currentUserName !== "" && "!text-[blue]"
               )}
               onClick={() => {
@@ -208,6 +211,9 @@ export const HomePage = (): JSX.Element => {
   };
 
   const onEnterUserNameDone = (position: PositionType) => {
+    console.log('currentUserName:', currentUserName);
+    console.log('position:', position);
+    
     if (!currentUserName) return;
     setUserState({
       ...userState,
@@ -225,20 +231,19 @@ export const HomePage = (): JSX.Element => {
   }, [userState]);
 
   const onCurrentUserNameChange = (value: string) => {
-    setCurrentUserName({
-        name: value
-    })
+    setCurrentUserName(value)
   }
 
   return (
     <div className="bg-[#FFFCEC]">
-      <div className="h-[100px] border-2 border-solid border-[green]">
+      <div className="h-[50px] border-2 border-solid border-[green]">
         header
       </div>
 
-      <div className="h-[calc(100vh-200px)] relative">
+      <div className="contentHeight relative">
         {positionArray.map((position: PositionType) => {
-          return <UserBox position={position} />;
+          // return <UserBox position={position} />;
+          return UserBox(position);
         })}
         {/* <div
           className={clsx(
@@ -314,9 +319,12 @@ export const HomePage = (): JSX.Element => {
                         <div className="text-[red] box rotate">123</div>
                     </div>
                 </div> */}
+                <div className=" absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ">
+                  <div className="p-2 bg-blue-600 text-[#fff] rounded">開始牌局</div>
+                </div>
       </div>
 
-      <div className="border-2 border-solid border-[red] h-[100px]">footer</div>
+      <div className="border-2 border-solid border-[red] h-[50px]">footer</div>
       {currentPosition && (
         <div
           className={clsx(
