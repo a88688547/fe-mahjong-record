@@ -16,6 +16,10 @@ body {
   height: var(--doc-height);
 }
 
+.min_h_vh50 {
+    min-height: calc(var(--doc-height)/2);
+  }
+
 .contentHeight {
   height: calc(var(--doc-height) - 100px);
 

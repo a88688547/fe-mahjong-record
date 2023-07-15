@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FocusEventHandler } from 'react'
+import { ChangeEventHandler, FocusEventHandler, KeyboardEvent } from 'react'
 // import { UseFormRegisterReturn } from 'react-hook-form'
 import clsx from 'clsx'
 
@@ -14,6 +14,8 @@ type TextInputProps = {
   // onBlur?: FocusEventHandler<HTMLInputElement>
   value?: string | number
   className?:string
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement> | undefined
+  inputmode?: "text" | "search" | "email" | "tel" | "url" | "none" | "numeric" | "decimal" | undefined
 }
 
 const Text = ({
@@ -27,6 +29,8 @@ const Text = ({
   maxLength,
   onChange,
   className,
+  onKeyDown,
+  inputmode,
 }: 
 // onBlur,
 TextInputProps) => {
@@ -41,6 +45,7 @@ TextInputProps) => {
           className,
         )}
         type={type}
+        inputMode={inputmode}
         placeholder={placeholder}
         defaultValue={defaultValue}
         // {...register}
@@ -49,6 +54,7 @@ TextInputProps) => {
         onChange={onChange}
         // onBlur={onBlur}
         value={value}
+        onKeyDown={onKeyDown}
       />
     </>
   )
