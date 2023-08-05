@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/fe-mahjong-record/static/css/main.4289919b.css",
-    "main.js": "/fe-mahjong-record/static/js/main.233f601b.js",
+    "main.css": "/fe-mahjong-record/static/css/main.0012081f.css",
+    "main.js": "/fe-mahjong-record/static/js/main.a519ec85.js",
+    "static/media/ic_battle.svg": "/fe-mahjong-record/static/media/ic_battle.a8efcb23b6075954c1b7764922a3ff3a.svg",
     "index.html": "/fe-mahjong-record/index.html",
-    "main.4289919b.css.map": "/fe-mahjong-record/static/css/main.4289919b.css.map",
-    "main.233f601b.js.map": "/fe-mahjong-record/static/js/main.233f601b.js.map"
+    "static/media/ic_add.svg": "/fe-mahjong-record/static/media/ic_add.52900d35f7ff385d8f109362ebf539a5.svg",
+    "static/media/ic_histogram.svg": "/fe-mahjong-record/static/media/ic_histogram.b635a760262e940fa793d6e7e349535b.svg",
+    "main.0012081f.css.map": "/fe-mahjong-record/static/css/main.0012081f.css.map",
+    "main.a519ec85.js.map": "/fe-mahjong-record/static/js/main.a519ec85.js.map"
   },
   "entrypoints": [
-    "static/css/main.4289919b.css",
-    "static/js/main.233f601b.js"
+    "static/css/main.0012081f.css",
+    "static/js/main.a519ec85.js"
   ]
 }
